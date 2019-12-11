@@ -1,6 +1,4 @@
-# hp
-
-> touyu.me
+# touyu.me
 
 ## Build Setup
 
