@@ -2,10 +2,18 @@
   <div class="container">
     <div>
       <h1 class="title">touyu.me</h1>
-      <div class="description">
-        <h2>Yuto Akiba</h2>
-        <p>RINACITA, Inc, CTO<br />Software Enginner (Swift / Go)</p>
-      </div>
+      <mq-layout mq="md+">
+        <div class="description">
+          <h2>{{ name }}</h2>
+          <p>{{ description }}</p>
+        </div>
+      </mq-layout>
+      <mq-layout mq="sm">
+        <div class="description-mobile">
+          <h2>{{ name }}</h2>
+          <p>{{ description }}</p>
+        </div>
+      </mq-layout>
       <div class="social-icon-container">
         <a href="https://github.com/touyu">
           <i class="fab fa-github social-icon"></i>
@@ -24,6 +32,12 @@
 export default {
   components: {
     // Logo
+  },
+  data() {
+    return {
+      name: 'Yuto Akiba',
+      description: 'RINACITA, Inc, CTO\nSoftware Enginner (Swift / Go)'
+    }
   }
 }
 </script>
@@ -44,7 +58,7 @@ export default {
 
 .description {
   display: flex;
-  vertical-align: top;
+  white-space: pre-wrap;
 }
 
 .description h2 {
@@ -57,6 +71,20 @@ export default {
 .description p {
   font-weight: 200;
   font-size: 16px;
+  letter-spacing: 2px;
+  line-height: 24px;
+}
+
+.description-mobile h2 {
+  margin-right: 32px;
+  font-weight: 200;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.description-mobile p {
+  font-weight: 200;
+  font-size: 14px;
   letter-spacing: 2px;
   line-height: 24px;
 }
