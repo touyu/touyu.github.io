@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <nuxt />
-    <Footer />
+  <div class="sf-site-all">
+    <nuxt class="sf-site-content" />
+    <bottom />
   </div>
 </template>
 
 <script>
-import Footer from '~/components/footer.vue'
+import Bottom from '~/components/Bottom.vue'
 
 export default {
   components: {
-    Footer
+    Bottom
   }
 }
 </script>
@@ -25,5 +25,15 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+}
+
+.sf-site-all {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sf-site-content {
+  flex: 1;
 }
 </style>
