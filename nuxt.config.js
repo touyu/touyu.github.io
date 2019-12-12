@@ -16,7 +16,10 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.6.3/css/all.css' }
+      {
+        rel: 'stylesheet',
+        href: 'https://use.fontawesome.com/releases/v5.6.3/css/all.css'
+      }
     ]
   },
   /*
@@ -30,9 +33,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '~/plugins/vue-mq'
-  ],
+  plugins: [],
   /*
    ** Nuxt.js dev-modules
    */

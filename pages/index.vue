@@ -2,18 +2,10 @@
   <div class="container">
     <div>
       <h1 class="title">touyu.me</h1>
-      <mq-layout mq="md+">
-        <div class="description">
-          <h2>{{ name }}</h2>
-          <p>{{ description }}</p>
-        </div>
-      </mq-layout>
-      <mq-layout mq="sm">
-        <div class="description-mobile">
-          <h2>{{ name }}</h2>
-          <p>{{ description }}</p>
-        </div>
-      </mq-layout>
+      <div class="description">
+        <h2>{{ name }}</h2>
+        <p>{{ description }}</p>
+      </div>
       <div class="social-icon-container">
         <a href="https://github.com/touyu">
           <i class="fab fa-github social-icon"></i>
@@ -75,18 +67,25 @@ export default {
   line-height: 24px;
 }
 
-.description-mobile h2 {
-  margin-right: 32px;
-  font-weight: 200;
-  font-size: 18px;
-  letter-spacing: 2px;
-}
+@media (max-width: 900px) {
+  .description {
+    display: block;
+    white-space: normal;
+  }
 
-.description-mobile p {
-  font-weight: 200;
-  font-size: 14px;
-  letter-spacing: 2px;
-  line-height: 24px;
+  .description h2 {
+    margin-right: 32px;
+    font-weight: 200;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  .description p {
+    font-weight: 200;
+    font-size: 14px;
+    letter-spacing: 2px;
+    line-height: 24px;
+  }
 }
 
 .social-icon-container {
