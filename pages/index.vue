@@ -54,7 +54,7 @@ export default {
 }
 
 .description h2 {
-  margin-right: 32px;
+  margin: 16px 32px 0 0;
   font-weight: 200;
   font-size: 24px;
   letter-spacing: 2px;
