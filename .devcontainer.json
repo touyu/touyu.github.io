@@ -1,0 +1,9 @@
+{
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "nuxt",
+    "workspaceFolder": "/app",
+	"extensions": [
+		"esbenp.prettier-vscode",
+		"octref.vetur"
+	]
+}
