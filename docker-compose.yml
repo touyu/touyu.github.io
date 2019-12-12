@@ -6,6 +6,7 @@ services:
     command: yarn dev
     volumes:
         - .:/app
+        - /app/node_modules # https://castaneai.hatenablog.com/entry/2019/01/29/151257
     ports:
          - "3000:3000"
     environment:
