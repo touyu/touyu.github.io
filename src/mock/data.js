@@ -33,6 +33,7 @@ export const projectsData = [
     title: "Portannict",
     info: "Modern annict client app for iOS.",
     info2: "",
+    button_title: "App Store",
     url: "https://apps.apple.com/jp/app/portannict/id1205227187",
     repo: "https://github.com/touyu/Portannict", // if no repo, the button will not show up
   },
