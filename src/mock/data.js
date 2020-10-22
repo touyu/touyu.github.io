@@ -10,7 +10,7 @@ export const headData = {
 // HERO DATA
 export const heroData = {
   title: "Hi, my name is",
-  name: "touyu",
+  name: "touyu.me",
   subtitle: "I'm just a developer.",
   cta: "",
 };
@@ -18,9 +18,9 @@ export const heroData = {
 // ABOUT DATA
 export const aboutData = {
   img: "profile.jpg",
+  name: "Yuto Akiba",
   paragraphOne: "CTO @ RINACITA, Inc.",
-  paragraphTwo:
-    "I develop iOS App with Swift, API with Go and GAN with Python.",
+  paragraphTwo: "I develop iOS App with Swift, API with Go and GAN with Python.",
   paragraphThree: "",
   resume: "https://www.resumemaker.online/es.php", // if no resume, the button will not show up
 };
@@ -33,8 +33,8 @@ export const projectsData = [
     title: "Portannict",
     info: "Modern annict client app for iOS.",
     info2: "",
-    button_title: "App Store",
-    url: "https://apps.apple.com/jp/app/portannict/id1205227187",
+    button_title: "Site",
+    url: "https://portannict.com/",
     repo: "https://github.com/touyu/Portannict", // if no repo, the button will not show up
   },
 ];

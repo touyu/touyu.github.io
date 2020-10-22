@@ -7,7 +7,7 @@ import PortfolioContext from "../../context/context";
 
 const About = () => {
   const { about } = useContext(PortfolioContext);
-  const { img, paragraphOne, paragraphTwo, paragraphThree } = about;
+  const { img, paragraphOne, paragraphTwo, paragraphThree, name } = about;
 
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -43,6 +43,7 @@ const About = () => {
               distance="30px"
             >
               <div className="about-wrapper__info">
+                <p className="about-wrapper__info-name">{name}</p>
                 <p className="about-wrapper__info-text">{paragraphOne}</p>
                 <p className="about-wrapper__info-text">{paragraphTwo}</p>
                 <p className="about-wrapper__info-text">{paragraphThree}</p>
