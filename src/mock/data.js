@@ -30,7 +30,7 @@ export const projectsData = [
     id: nanoid(),
     img: 'portannict.jpg',
     title: 'Portannict',
-    info: 'Elegant annict client app for iOS.',
+    info: 'Modern annict client app for iOS.',
     info2: '',
     url: 'https://apps.apple.com/jp/app/portannict/id1205227187',
     repo: 'https://github.com/touyu/Portannict', // if no repo, the button will not show up
