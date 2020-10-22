@@ -38,12 +38,13 @@ const About = () => {
             <Fade left={isDesktop} bottom={isMobile} duration={1000} delay={1000} distance="30px">
               <div className="about-wrapper__info">
                 <p className="about-wrapper__info-text">
-                  {paragraphOne ||
-                    'CTO @ RINACITA, Inc.'}
+                  {paragraphOne}
                 </p>
                 <p className="about-wrapper__info-text">
-                  {paragraphTwo ||
-                    'I develop iOS App with Swift, API with Go and GAN with Python.'}
+                  {paragraphTwo}
+                </p>
+                <p className="about-wrapper__info-text">
+                  {paragraphThree}
                 </p>
               </div>
             </Fade>
