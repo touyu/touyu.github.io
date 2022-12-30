@@ -12,4 +12,12 @@ const config: GatsbyConfig = {
   plugins: ["gatsby-plugin-styled-components"]
 };
 
+module.exports = {
+  plugins: [
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`, // Needed for dynamic images
+  ],
+}
+
 export default config;
