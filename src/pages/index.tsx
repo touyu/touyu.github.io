@@ -1,7 +1,7 @@
 import * as React from "react"
 import type { HeadFC, PageProps } from "gatsby"
 import styled from "styled-components";
-import image1 from "../images/image16.png"
+import image1 from "../images/image6.png"
 
 const Main = styled.main`
   font-family: Futura,Arial,sans-serif;
@@ -9,11 +9,10 @@ const Main = styled.main`
 `
 
 const BackgroundImage = styled.div`
-  overflow: hidden;
-  //height: 100dvh;
   height: 100%;
   background-image: url(${image1});
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: bottom;
   opacity: 0;
   animation: fadeIn 1s linear 0.25s 1 forwards;
@@ -25,7 +24,7 @@ const BackgroundImage = styled.div`
 
 const BackgroundOverlay = styled.div`
   margin: 0;
-  background: rgba(0,0,0,0.1);
+  //background: rgba(0,0,0,0.1);
   width: 100%;
   height: 100%;
 `
@@ -38,6 +37,7 @@ const ContentBox = styled.div`
   transform: translateY(-50%) translateX(-50%);
   letter-spacing: 0.1rem;
   font-style: italic;
+  //mix-blend-mode: overlay;
 `
 
 const Title = styled.h1`
@@ -50,14 +50,14 @@ const Title = styled.h1`
 
 const SubTitle = styled.h2`
   color: white;
-  opacity: 0.9;
+  //opacity: 0.9;
   font-size: 18px;
   font-weight: 100;
 `
 
 const Description = styled.p`
   color: white;
-  opacity: 0.9;
+  //opacity: 0.9;
   font-size: 14px;
 `
 
@@ -71,6 +71,7 @@ const Bottom = styled.div`
   opacity: 0.6;
   text-align: right;
   font-style: italic;
+  //mix-blend-mode: overlay;
 `
 
 const IndexPage: React.FC<PageProps> = () => {
