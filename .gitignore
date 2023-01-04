@@ -4,3 +4,9 @@ public
 src/gatsby-types.d.ts
 .DS_Store
 .idea
+.next
+
+# Logs
+logs
+*.log
+npm-debug.log*
