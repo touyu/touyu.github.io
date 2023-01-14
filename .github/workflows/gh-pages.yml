@@ -9,7 +9,8 @@ on:
 jobs:
   build-deploy:
     # ubuntu OS を仮想マシン上に用意する
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -17,7 +18,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 16
 
       # npm install の際にキャッシュを使うよう設定
       - name: Cache dependencies
