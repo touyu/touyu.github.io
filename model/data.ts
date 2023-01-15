@@ -9,10 +9,10 @@ export const siteData = {
 export interface BackgroundImage {
     path: string
     prompt: string
-    generated_by: string
+    generatedBy: string
 }
 
-export const backgroundImages = [
+export const backgroundImages: BackgroundImage[] = [
     {
         path: "/touyu_many_computers_piles_miscellaneous_placed_deconstructed_d_59ecf491-e4ad-42be-821f-a19f3537f808.png",
         prompt: `"many computers, piles, miscellaneous placed, deconstructed, deep sea`,
