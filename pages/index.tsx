@@ -46,6 +46,7 @@ const Title = styled.h1`
 `
 
 const SubTitle = styled.h2`
+  margin-top: 8px;
   color: white;
   font-size: 18px;
   font-weight: 100;
@@ -85,7 +86,7 @@ const SocialLink = styled.a`
 `
 
 const SocialContainer = styled.div`
-  margin-top: 16px;
+  margin-top: 12px;
   display: flex;
   column-gap: 16px;
   
