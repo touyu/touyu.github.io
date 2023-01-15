@@ -102,7 +102,7 @@ export default function Home() {
           <meta property="og:site_name" content="touyu.me" />
           <meta property="og:title" content="touyu.me" />
           <meta property="og:description" content="touyu.me" />
-          <meta property="og:image" content={"https://touyu.me" + "/ogp.png"} />
+          <meta property="og:image" content="https://touyu.me/ogp.png" />
 
           {/* Twitter */}
           <meta name="twitter:card" content="summary_large_image" />
