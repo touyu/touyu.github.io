@@ -87,7 +87,7 @@ const SocialLink = styled.a`
 const SocialContainer = styled.div`
   margin-top: 16px;
   display: flex;
-  column-gap: 16px;Hea
+  column-gap: 16px;
   
 `
 
@@ -97,10 +97,16 @@ export default function Home() {
       <Head>
           <title>touyu.me</title>
           <meta name="touyu.me" content="touyu.me" />
+          <meta property="og:url" content="https://touyu.me" />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="touyu.me" />
           <meta property="og:title" content="touyu.me" />
           <meta property="og:description" content="touyu.me" />
           <meta property="og:image" content={"https://touyu.me" + "/ogp.png"} />
-          {/*<meta name="viewport" content="width=device-width, initial-scale=1" />*/}
+
+          {/* Twitter */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@akkey0222" />
       </Head>
       <Main>
           <BackgroundImage>
