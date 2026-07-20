@@ -5,6 +5,8 @@ export default {
     extend: {
       fontFamily: {
         futura: ['Futura', 'Arial', 'sans-serif'],
+        pacifico: ['Pacifico', 'cursive'],
+        righteous: ['Righteous', 'sans-serif'],
       },
     },
   },
