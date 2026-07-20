@@ -1,11 +1,7 @@
 node_modules/
-.cache/
-public
-src/gatsby-types.d.ts
+dist/
 .DS_Store
 .idea
-.next
-out
 
 # Logs
 logs

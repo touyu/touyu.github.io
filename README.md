@@ -1,13 +1,23 @@
 # touyu.me
 
+Personal site built with Vite + React + styled-components.
+
 ## Requirements
-- Node v16.x
+- Node v18.x
 
 ## Development
 
 ```bash
+npm install
 npm run dev
 ```
 
+## Build
+
+```bash
+npm run build    # type-check + build to dist/
+npm run preview  # preview the production build locally
+```
+
 ## Deployment & Hosting
-- [GitHub Pages: Custom GitHub Actions Workflows (beta)](https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/)
+- GitHub Pages. Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site and deploys `dist/`.
