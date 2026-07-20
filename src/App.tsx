@@ -233,7 +233,7 @@ const Confetti = () => {
         // excess speed from impacts eases back down to cruising speed
         const speed = Math.hypot(b.vx, b.vy)
         if (speed > 0.001) {
-          const target = b.cruise + (speed - b.cruise) * Math.exp(-1.5 * dt)
+          const target = b.cruise + (speed - b.cruise) * Math.exp(-1 * dt)
           const scale = target / speed
           b.vx *= scale
           b.vy *= scale
