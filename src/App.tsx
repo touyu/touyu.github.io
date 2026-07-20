@@ -154,15 +154,15 @@ const Confetti = ({cardRef}: ConfettiProps) => {
       })
     })
 
-    // cursor acts as a circular obstacle; its velocity is tracked so hits
-    // transfer momentum
-    const CURSOR_RADIUS = 48
+    // the pointer (mouse cursor or touching finger) acts as a circular
+    // obstacle; its velocity is tracked so hits transfer momentum
+    const CURSOR_RADIUS = 28
     const MAX_SPEED = 900
     const mouse = {x: -9999, y: -9999, vx: 0, vy: 0, lastT: 0}
-    const onMouseMove = (e: MouseEvent) => {
+    const updatePointer = (clientX: number, clientY: number) => {
       const bounds = container.getBoundingClientRect()
-      const x = e.clientX - bounds.left
-      const y = e.clientY - bounds.top
+      const x = clientX - bounds.left
+      const y = clientY - bounds.top
       const t = performance.now()
       if (mouse.lastT > 0 && mouse.x > -9000) {
         const mdt = Math.max((t - mouse.lastT) / 1000, 0.001)
@@ -174,15 +174,30 @@ const Confetti = ({cardRef}: ConfettiProps) => {
       mouse.y = y
       mouse.lastT = t
     }
-    const onMouseLeave = () => {
+    const clearPointer = () => {
       mouse.x = -9999
       mouse.y = -9999
       mouse.vx = 0
       mouse.vy = 0
       mouse.lastT = 0
     }
+    const onMouseMove = (e: MouseEvent) => updatePointer(e.clientX, e.clientY)
+    const onTouchStart = (e: TouchEvent) => {
+      // fresh touch: place the obstacle without inheriting a velocity jump
+      clearPointer()
+      const t = e.touches[0]
+      if (t) updatePointer(t.clientX, t.clientY)
+    }
+    const onTouchMove = (e: TouchEvent) => {
+      const t = e.touches[0]
+      if (t) updatePointer(t.clientX, t.clientY)
+    }
     window.addEventListener('mousemove', onMouseMove)
-    document.documentElement.addEventListener('mouseleave', onMouseLeave)
+    document.documentElement.addEventListener('mouseleave', clearPointer)
+    window.addEventListener('touchstart', onTouchStart, {passive: true})
+    window.addEventListener('touchmove', onTouchMove, {passive: true})
+    window.addEventListener('touchend', clearPointer)
+    window.addEventListener('touchcancel', clearPointer)
 
     let raf = 0
     let last = performance.now()
@@ -319,7 +334,11 @@ const Confetti = ({cardRef}: ConfettiProps) => {
     return () => {
       cancelAnimationFrame(raf)
       window.removeEventListener('mousemove', onMouseMove)
-      document.documentElement.removeEventListener('mouseleave', onMouseLeave)
+      document.documentElement.removeEventListener('mouseleave', clearPointer)
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('touchend', clearPointer)
+      window.removeEventListener('touchcancel', clearPointer)
     }
   }, [cardRef])
 
@@ -339,26 +358,35 @@ const Confetti = ({cardRef}: ConfettiProps) => {
 }
 
 // picked once per page load: pink or light blue, dots in the same hue.
-// the title shadow uses the opposite theme's color
+// the title shadow and name use the opposite theme's color
 const BG_THEMES = [
   {
-    main: 'bg-[#f6a9c9] bg-[radial-gradient(#e0679e_1.5px,transparent_1.5px)]',
+    base: '#f6a9c9',
+    dot: '#e0679e',
     titleShadow: 'drop-shadow-[5px_5px_0_#7ec8ea]',
     name: 'text-[#4d9fd4]',
   },
   {
-    main: 'bg-[#8fd0f0] bg-[radial-gradient(#4d9fd4_1.5px,transparent_1.5px)]',
+    base: '#8fd0f0',
+    dot: '#4d9fd4',
     titleShadow: 'drop-shadow-[5px_5px_0_#f6a9c9]',
     name: 'text-[#e75a9c]',
   },
 ]
 const bgTheme = BG_THEMES[Math.floor(Math.random() * BG_THEMES.length)]
 
+// paint the background on <html>/<body> so it also fills the safe areas
+// (notch / home indicator) on iOS Safari with viewport-fit=cover
+document.documentElement.style.backgroundColor = bgTheme.base
+document.body.style.backgroundColor = bgTheme.base
+document.body.style.backgroundImage = `radial-gradient(${bgTheme.dot} 1.5px, transparent 1.5px)`
+document.body.style.backgroundSize = '14px 14px'
+
 const App = () => {
   const cardRef = useRef<HTMLDivElement>(null)
 
   return (
-    <main className={`relative flex min-h-dvh items-center justify-center ${bgTheme.main} [background-size:14px_14px] p-6`}>
+    <main className="relative flex min-h-dvh items-center justify-center p-6">
       <Confetti cardRef={cardRef} />
 
       <div className="relative w-full max-w-xl">
