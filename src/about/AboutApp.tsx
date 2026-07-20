@@ -35,7 +35,14 @@ const AboutApp = () => {
 
           {/* back to top */}
           <div className="mt-8 text-center sm:mt-10">
-            <a className={`${buttonClass} bg-[#ffd400]`} href="/">◀ BACK</a>
+            <a className={`${buttonClass} bg-[#ffd400]`} href="/">
+              <span className="inline-flex items-center gap-2">
+                <svg className="h-[0.8em] w-[0.8em]" viewBox="0 0 16 16" fill="currentColor" aria-hidden>
+                  <path d="M12 1.5 L3.5 8 L12 14.5 Z" />
+                </svg>
+                BACK
+              </span>
+            </a>
           </div>
         </div>
       </div>
