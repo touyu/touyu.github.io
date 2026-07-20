@@ -364,7 +364,7 @@ const App = () => {
       <div className="relative w-full max-w-xl">
         <div ref={cardRef} className="relative border-4 border-black bg-[#fdf4dc] p-5 pb-8 shadow-[12px_12px_0_0_rgba(0,0,0,0.85)] sm:p-8 sm:pb-10">
           {/* title */}
-          <h1 className={`relative z-10 -mb-3 sm:-mb-4 -rotate-3 text-center font-pacifico text-5xl text-white [-webkit-text-stroke:2px_black] ${bgTheme.titleShadow} sm:text-7xl`}>
+          <h1 className={`relative z-10 -mb-4 -rotate-3 text-center font-pacifico text-6xl text-white [-webkit-text-stroke:2px_black] ${bgTheme.titleShadow} sm:text-7xl`}>
             {siteData.title}
           </h1>
 
@@ -372,7 +372,7 @@ const App = () => {
           <div className="relative mt-2 border-4 border-black">
             <Scene />
             {/* year badge */}
-            <div className="absolute -left-5 -top-3 sm:-left-4 sm:-top-4 -rotate-6 rounded-lg border-[3px] border-black bg-[#f6a9c9] px-2.5 py-0.5 sm:px-3 sm:py-1 shadow-[3px_3px_0_0_#000]">
+            <div className="absolute z-20 -left-10 -top-4 sm:-left-4 -rotate-6 rounded-lg border-[3px] border-black bg-[#f6a9c9] px-2.5 py-0.5 sm:px-3 sm:py-1 shadow-[3px_3px_0_0_#000]">
               <span className="font-righteous text-base sm:text-xl tracking-widest text-[#5d3fae]">1997</span>
             </div>
           </div>
