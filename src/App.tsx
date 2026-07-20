@@ -6,8 +6,31 @@ const buttonClass =
   "shadow-[5px_5px_0_0_#000] transition-transform duration-150 " +
   "hover:-translate-y-0.5 hover:shadow-[7px_7px_0_0_#000] active:translate-y-1 active:shadow-[2px_2px_0_0_#000]"
 
+// invisible hover areas over items in the illustration, in % of the image
+const SCENE_HOTSPOTS = [
+  {left: '1%', top: '52%', width: '14%', height: '40%', text: 'グレンアラヒーが好き'},
+  {left: '16%', top: '42%', width: '11%', height: '47%', text: 'Varia VS3 & Flair 58+2 愛用'},
+  {left: '23%', top: '68%', width: '22%', height: '30%', text: 'ポーカー楽しいね'},
+]
+
 const Scene = () => (
-  <img src="/80s-scene.jpg" alt="" className="block h-auto w-full" />
+  <div className="relative">
+    <img src="/80s-scene.jpg" alt="" className="block h-auto w-full" />
+    {SCENE_HOTSPOTS.map((spot) => (
+      <div
+        key={spot.text}
+        className="group absolute cursor-help"
+        style={{left: spot.left, top: spot.top, width: spot.width, height: spot.height}}
+      >
+        <div className="pointer-events-none absolute bottom-full left-0 z-30 mb-3 hidden w-max group-hover:block">
+          <div className="relative rounded-xl border-[3px] border-black bg-[#fdf4dc] px-4 py-2 text-sm font-bold text-black shadow-[4px_4px_0_0_#000]">
+            {spot.text}
+            <div className="absolute -bottom-[9px] left-6 h-3.5 w-3.5 rotate-45 border-b-[3px] border-r-[3px] border-black bg-[#fdf4dc]" />
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
 )
 
 type PieceKind = 'squiggle' | 'triangle' | 'sparkle' | 'dot'
