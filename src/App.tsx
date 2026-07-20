@@ -68,11 +68,11 @@ const BASE_PIECE_DEFS: PieceDef[] = [
   {kind: 'dot', color: '#7ec8ea', size: 10},
 ]
 
-// population scales with viewport area: ~15 pieces on a phone,
-// ~50 on a laptop, capped at 100 on large displays
+// population scales with viewport area: ~18 pieces on a phone,
+// ~65 on a laptop, capped at 120 on large displays
 const makePieceDefs = (): PieceDef[] => {
   const area = window.innerWidth * window.innerHeight
-  const count = Math.min(100, Math.max(14, Math.round(area / 22000)))
+  const count = Math.min(120, Math.max(17, Math.round(area / 18000)))
   return Array.from({length: count}, (_, i) => {
     const base = BASE_PIECE_DEFS[i % BASE_PIECE_DEFS.length]
     const scale = 0.75 + Math.random() * 0.45
