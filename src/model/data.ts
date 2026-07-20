@@ -5,17 +5,3 @@ export const siteData = {
     githubUrl: "https://github.com/touyu",
     twitterUrl: "https://twitter.com/akkey0222"
 }
-
-export interface BackgroundImage {
-    path: string
-    prompt: string
-    generatedBy: string
-}
-
-export const backgroundImages: BackgroundImage[] = [
-    {
-        path: "/touyu_many_computers_piles_miscellaneous_placed_deconstructed_d_59ecf491-e4ad-42be-821f-a19f3537f808.png",
-        prompt: `"many computers, piles, miscellaneous placed, deconstructed, deep sea`,
-        generatedBy: "Midjourney"
-    }
-]
