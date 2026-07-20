@@ -2,7 +2,7 @@ import {useEffect, useRef} from "react";
 import {siteData} from "./model/data";
 
 const buttonClass =
-  "inline-block border-[3px] border-black px-6 py-2 font-righteous text-lg text-black " +
+  "inline-block border-[3px] border-black px-6 py-2 font-righteous text-lg text-black md:px-7 md:text-xl " +
   "shadow-[5px_5px_0_0_#000] transition-transform duration-150 " +
   "hover:-translate-y-0.5 hover:shadow-[7px_7px_0_0_#000] active:translate-y-1 active:shadow-[2px_2px_0_0_#000]"
 
@@ -41,30 +41,32 @@ interface PieceDef {
   size: number
 }
 
+// colors sampled from the card: sunset, whiskey, sky, pool, tiles,
+// foliage, poker chips, cream card stock, and the two buttons
 const BASE_PIECE_DEFS: PieceDef[] = [
-  {kind: 'squiggle', color: '#0e9c8c', size: 64},
+  {kind: 'squiggle', color: '#f06fb0', size: 64},
   {kind: 'squiggle', color: '#8c6fd9', size: 64},
-  {kind: 'squiggle', color: '#e75a9c', size: 56},
-  {kind: 'squiggle', color: '#2a6de0', size: 56},
-  {kind: 'squiggle', color: '#ffd400', size: 48},
+  {kind: 'squiggle', color: '#7fd4e8', size: 56},
+  {kind: 'squiggle', color: '#2e6b5e', size: 56},
+  {kind: 'squiggle', color: '#4a4fa3', size: 48},
   {kind: 'squiggle', color: '#fdf4dc', size: 60},
-  {kind: 'squiggle', color: '#7ec8ea', size: 52},
-  {kind: 'squiggle', color: '#5d3fae', size: 44},
+  {kind: 'squiggle', color: '#3fb3b8', size: 52},
+  {kind: 'squiggle', color: '#d94f9e', size: 44},
   {kind: 'triangle', color: '#ffd400', size: 36},
   {kind: 'triangle', color: '#fdf4dc', size: 28},
-  {kind: 'triangle', color: '#0e9c8c', size: 32},
-  {kind: 'triangle', color: '#e75a9c', size: 24},
-  {kind: 'sparkle', color: '#fdf4dc', size: 32},
-  {kind: 'sparkle', color: '#ffd400', size: 26},
+  {kind: 'triangle', color: '#2e6b5e', size: 32},
+  {kind: 'triangle', color: '#f06fb0', size: 24},
+  {kind: 'sparkle', color: '#f8e27a', size: 32},
+  {kind: 'sparkle', color: '#fdf4dc', size: 26},
   {kind: 'sparkle', color: '#ffffff', size: 22},
-  {kind: 'sparkle', color: '#7ec8ea', size: 28},
-  {kind: 'dot', color: '#2a6de0', size: 16},
+  {kind: 'sparkle', color: '#7fd4e8', size: 28},
+  {kind: 'dot', color: '#4a4fa3', size: 16},
   {kind: 'dot', color: '#ffffff', size: 12},
   {kind: 'dot', color: '#8c6fd9', size: 12},
-  {kind: 'dot', color: '#0e9c8c', size: 16},
+  {kind: 'dot', color: '#2e7d74', size: 16},
   {kind: 'dot', color: '#ffd400', size: 14},
-  {kind: 'dot', color: '#e75a9c', size: 10},
-  {kind: 'dot', color: '#fdf4dc', size: 14},
+  {kind: 'dot', color: '#d94f9e', size: 10},
+  {kind: 'dot', color: '#f8e27a', size: 14},
   {kind: 'dot', color: '#7ec8ea', size: 10},
 ]
 
@@ -373,13 +375,13 @@ document.body.style.backgroundSize = '14px 14px'
 
 const App = () => {
   return (
-    <main className="relative flex min-h-dvh items-center justify-center p-6">
+    <main className="relative flex min-h-dvh items-center justify-center p-6 sm:p-8">
       <Confetti />
 
-      <div className="relative w-full max-w-xl">
+      <div className="relative w-full max-w-3xl">
         <div className="relative border-4 border-black bg-[#fdf4dc] p-5 pb-8 shadow-[12px_12px_0_0_rgba(0,0,0,0.85)] sm:p-8 sm:pb-10">
           {/* title */}
-          <h1 className={`relative z-10 -mb-4 -rotate-3 text-center font-pacifico text-6xl text-white [-webkit-text-stroke:2px_black] ${bgTheme.titleShadow} sm:text-7xl`}>
+          <h1 className={`relative z-10 -mb-4 -rotate-3 text-center font-pacifico text-6xl text-white [-webkit-text-stroke:2px_black] ${bgTheme.titleShadow} sm:text-7xl md:-mb-5 md:text-8xl`}>
             {siteData.title}
           </h1>
 
@@ -394,10 +396,10 @@ const App = () => {
 
           {/* name / description */}
           <div className="mt-6 text-center">
-            <h2 className={`font-righteous text-3xl tracking-[0.2em] ${bgTheme.name} [text-shadow:2px_2px_0_#000]`}>
+            <h2 className={`font-righteous text-3xl uppercase tracking-[0.2em] ${bgTheme.name} [text-shadow:2px_2px_0_#000] md:text-4xl`}>
               {siteData.subTitle}
             </h2>
-            <p className="mt-1 text-sm font-bold italic tracking-[0.3em] text-black">
+            <p className="mt-1 text-sm font-bold italic tracking-[0.3em] text-black md:text-base">
               — {siteData.description} —
             </p>
           </div>
