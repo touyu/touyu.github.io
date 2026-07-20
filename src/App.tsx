@@ -87,11 +87,7 @@ const PieceSprite = ({def}: {def: PieceDef}) => {
   }
 }
 
-interface ConfettiProps {
-  cardRef: React.RefObject<HTMLDivElement>
-}
-
-const Confetti = ({cardRef}: ConfettiProps) => {
+const Confetti = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const nodeRefs = useRef<(HTMLDivElement | null)[]>([])
   const defsRef = useRef<PieceDef[] | null>(null)
@@ -123,7 +119,6 @@ const Confetti = ({cardRef}: ConfettiProps) => {
     }
 
     const bounds0 = container.getBoundingClientRect()
-    const cardRect0 = cardRef.current?.getBoundingClientRect()
 
     const bodies: Body[] = []
     pieceDefs.forEach((def, i) => {
@@ -131,15 +126,8 @@ const Confetti = ({cardRef}: ConfettiProps) => {
       if (!el) return
       const w = def.size
       const h = pieceHeight(def)
-      // random spawn outside the card
-      let x = 0, y = 0
-      for (let tries = 0; tries < 30; tries++) {
-        x = Math.random() * Math.max(bounds0.width - w, 1)
-        y = Math.random() * Math.max(bounds0.height - h, 1)
-        if (!cardRect0) break
-        const cl = cardRect0.left - bounds0.left, ct = cardRect0.top - bounds0.top
-        if (x + w < cl || x > cl + cardRect0.width || y + h < ct || y > ct + cardRect0.height) break
-      }
+      const x = Math.random() * Math.max(bounds0.width - w, 1)
+      const y = Math.random() * Math.max(bounds0.height - h, 1)
       const angle0 = Math.random() * Math.PI * 2
       const cruise = 40 + Math.random() * 50
       const r = (w + h) / 4
@@ -206,13 +194,6 @@ const Confetti = ({cardRef}: ConfettiProps) => {
       const dt = Math.min((now - last) / 1000, 0.05)
       last = now
       const bounds = container.getBoundingClientRect()
-      const cr = cardRef.current?.getBoundingClientRect()
-      const card = cr ? {
-        left: cr.left - bounds.left,
-        top: cr.top - bounds.top,
-        right: cr.right - bounds.left,
-        bottom: cr.bottom - bounds.top,
-      } : null
 
       // cursor velocity decays when the mouse stops sending events
       mouse.vx *= Math.exp(-6 * dt)
@@ -243,21 +224,6 @@ const Confetti = ({cardRef}: ConfettiProps) => {
         if (b.x > bounds.width - b.w) { b.x = bounds.width - b.w; b.vx = -Math.abs(b.vx) }
         if (b.y < 0) { b.y = 0; b.vy = Math.abs(b.vy) }
         if (b.y > bounds.height - b.h) { b.y = bounds.height - b.h; b.vy = -Math.abs(b.vy) }
-
-        // bounce off the card (AABB, resolve along the smallest penetration)
-        if (card &&
-            b.x + b.w > card.left && b.x < card.right &&
-            b.y + b.h > card.top && b.y < card.bottom) {
-          const penLeft = b.x + b.w - card.left
-          const penRight = card.right - b.x
-          const penTop = b.y + b.h - card.top
-          const penBottom = card.bottom - b.y
-          const minPen = Math.min(penLeft, penRight, penTop, penBottom)
-          if (minPen === penLeft) { b.x = card.left - b.w; b.vx = -Math.abs(b.vx) }
-          else if (minPen === penRight) { b.x = card.right; b.vx = Math.abs(b.vx) }
-          else if (minPen === penTop) { b.y = card.top - b.h; b.vy = -Math.abs(b.vy) }
-          else { b.y = card.bottom; b.vy = Math.abs(b.vy) }
-        }
 
         // cursor collision: reflect + inherit the cursor's momentum
         const ccx = b.x + b.w / 2
@@ -340,7 +306,7 @@ const Confetti = ({cardRef}: ConfettiProps) => {
       window.removeEventListener('touchend', clearPointer)
       window.removeEventListener('touchcancel', clearPointer)
     }
-  }, [cardRef])
+  }, [])
 
   return (
     <div ref={containerRef} className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -383,14 +349,12 @@ document.body.style.backgroundImage = `radial-gradient(${bgTheme.dot} 1.5px, tra
 document.body.style.backgroundSize = '14px 14px'
 
 const App = () => {
-  const cardRef = useRef<HTMLDivElement>(null)
-
   return (
     <main className="relative flex min-h-dvh items-center justify-center p-6">
-      <Confetti cardRef={cardRef} />
+      <Confetti />
 
       <div className="relative w-full max-w-xl">
-        <div ref={cardRef} className="relative border-4 border-black bg-[#fdf4dc] p-5 pb-8 shadow-[12px_12px_0_0_rgba(0,0,0,0.85)] sm:p-8 sm:pb-10">
+        <div className="relative border-4 border-black bg-[#fdf4dc] p-5 pb-8 shadow-[12px_12px_0_0_rgba(0,0,0,0.85)] sm:p-8 sm:pb-10">
           {/* title */}
           <h1 className={`relative z-10 -mb-4 -rotate-3 text-center font-pacifico text-6xl text-white [-webkit-text-stroke:2px_black] ${bgTheme.titleShadow} sm:text-7xl`}>
             {siteData.title}
