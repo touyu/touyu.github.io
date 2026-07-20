@@ -45,11 +45,17 @@ const BASE_PIECE_DEFS: PieceDef[] = [
   {kind: 'dot', color: '#7ec8ea', size: 10},
 ]
 
-// double the population: same palette, slightly smaller variants
-const PIECE_DEFS: PieceDef[] = [
-  ...BASE_PIECE_DEFS,
-  ...BASE_PIECE_DEFS.map((d) => ({...d, size: Math.round(d.size * 0.85)})),
-]
+// population scales with viewport area: ~15 pieces on a phone,
+// ~50 on a laptop, capped at 100 on large displays
+const makePieceDefs = (): PieceDef[] => {
+  const area = window.innerWidth * window.innerHeight
+  const count = Math.min(100, Math.max(14, Math.round(area / 22000)))
+  return Array.from({length: count}, (_, i) => {
+    const base = BASE_PIECE_DEFS[i % BASE_PIECE_DEFS.length]
+    const scale = 0.75 + Math.random() * 0.45
+    return {...base, size: Math.round(base.size * scale)}
+  })
+}
 
 const pieceHeight = (def: PieceDef) =>
   def.kind === 'squiggle' ? def.size * 20 / 56 : def.size
@@ -88,6 +94,11 @@ interface ConfettiProps {
 const Confetti = ({cardRef}: ConfettiProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const nodeRefs = useRef<(HTMLDivElement | null)[]>([])
+  const defsRef = useRef<PieceDef[] | null>(null)
+  if (defsRef.current === null) {
+    defsRef.current = makePieceDefs()
+  }
+  const pieceDefs = defsRef.current
 
   useEffect(() => {
     const container = containerRef.current
@@ -115,7 +126,7 @@ const Confetti = ({cardRef}: ConfettiProps) => {
     const cardRect0 = cardRef.current?.getBoundingClientRect()
 
     const bodies: Body[] = []
-    PIECE_DEFS.forEach((def, i) => {
+    pieceDefs.forEach((def, i) => {
       const el = nodeRefs.current[i]
       if (!el) return
       const w = def.size
@@ -314,7 +325,7 @@ const Confetti = ({cardRef}: ConfettiProps) => {
 
   return (
     <div ref={containerRef} className="pointer-events-none absolute inset-0 overflow-hidden">
-      {PIECE_DEFS.map((def, i) => (
+      {pieceDefs.map((def, i) => (
         <div
           key={i}
           ref={(el) => { nodeRefs.current[i] = el }}
@@ -333,10 +344,12 @@ const BG_THEMES = [
   {
     main: 'bg-[#f6a9c9] bg-[radial-gradient(#e0679e_1.5px,transparent_1.5px)]',
     titleShadow: 'drop-shadow-[5px_5px_0_#7ec8ea]',
+    name: 'text-[#4d9fd4]',
   },
   {
     main: 'bg-[#8fd0f0] bg-[radial-gradient(#4d9fd4_1.5px,transparent_1.5px)]',
     titleShadow: 'drop-shadow-[5px_5px_0_#f6a9c9]',
+    name: 'text-[#e75a9c]',
   },
 ]
 const bgTheme = BG_THEMES[Math.floor(Math.random() * BG_THEMES.length)]
@@ -351,7 +364,7 @@ const App = () => {
       <div className="relative w-full max-w-xl">
         <div ref={cardRef} className="relative border-4 border-black bg-[#fdf4dc] p-5 pb-8 shadow-[12px_12px_0_0_rgba(0,0,0,0.85)] sm:p-8 sm:pb-10">
           {/* title */}
-          <h1 className={`relative z-10 -mb-4 -rotate-3 text-center font-pacifico text-6xl text-white [-webkit-text-stroke:2px_black] ${bgTheme.titleShadow} sm:text-7xl`}>
+          <h1 className={`relative z-10 -mb-3 sm:-mb-4 -rotate-3 text-center font-pacifico text-5xl text-white [-webkit-text-stroke:2px_black] ${bgTheme.titleShadow} sm:text-7xl`}>
             {siteData.title}
           </h1>
 
@@ -359,14 +372,14 @@ const App = () => {
           <div className="relative mt-2 border-4 border-black">
             <Scene />
             {/* year badge */}
-            <div className="absolute -left-4 -top-4 -rotate-6 rounded-lg border-[3px] border-black bg-[#f6a9c9] px-3 py-1 shadow-[3px_3px_0_0_#000]">
-              <span className="font-righteous text-xl tracking-widest text-[#5d3fae]">1997</span>
+            <div className="absolute -left-5 -top-3 sm:-left-4 sm:-top-4 -rotate-6 rounded-lg border-[3px] border-black bg-[#f6a9c9] px-2.5 py-0.5 sm:px-3 sm:py-1 shadow-[3px_3px_0_0_#000]">
+              <span className="font-righteous text-base sm:text-xl tracking-widest text-[#5d3fae]">1997</span>
             </div>
           </div>
 
           {/* name / description */}
           <div className="mt-6 text-center">
-            <h2 className="font-righteous text-3xl tracking-[0.2em] text-[#e75a9c] [text-shadow:2px_2px_0_#000]">
+            <h2 className={`font-righteous text-3xl tracking-[0.2em] ${bgTheme.name} [text-shadow:2px_2px_0_#000]`}>
               {siteData.subTitle}
             </h2>
             <p className="mt-1 text-sm font-bold italic tracking-[0.3em] text-black">
@@ -376,8 +389,8 @@ const App = () => {
 
           {/* links */}
           <div className="mt-6 flex justify-center gap-5">
-            <a className={`${buttonClass} bg-[#ffd400]`} href={siteData.githubUrl}>GitHub</a>
-            <a className={`${buttonClass} bg-[#7ec8ea]`} href={siteData.twitterUrl}>Twitter</a>
+            <a className={`${buttonClass} bg-[#ffd400]`} href={siteData.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a className={`${buttonClass} bg-[#7ec8ea]`} href={siteData.twitterUrl} target="_blank" rel="noopener noreferrer">Twitter</a>
           </div>
         </div>
       </div>
