@@ -25,6 +25,6 @@ document.body.style.backgroundImage = `radial-gradient(${bgTheme.dot} 1.5px, tra
 document.body.style.backgroundSize = '14px 14px'
 
 export const buttonClass =
-  "inline-block border-[3px] border-black px-6 py-2 font-righteous text-lg text-black md:px-7 md:text-xl " +
+  "inline-block border-[3px] border-black px-3 py-2 font-righteous text-sm text-black sm:px-6 sm:text-lg md:px-7 md:text-xl " +
   "shadow-[5px_5px_0_0_#000] transition-transform duration-150 " +
   "hover:-translate-y-0.5 hover:shadow-[7px_7px_0_0_#000] active:translate-y-1 active:shadow-[2px_2px_0_0_#000]"
