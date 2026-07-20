@@ -381,8 +381,8 @@ const App = () => {
 
           {/* links */}
           <div className="mt-6 flex justify-center gap-5">
-            <a className={`${buttonClass} bg-[#ffd400]`} href={siteData.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a className={`${buttonClass} bg-[#7ec8ea]`} href={siteData.twitterUrl} target="_blank" rel="noopener noreferrer">Twitter</a>
+            <a className={`${buttonClass} bg-[#ffd400]`} href={siteData.githubUrl} target="_blank" rel="noopener noreferrer">github.com</a>
+            <a className={`${buttonClass} bg-[#7ec8ea]`} href={siteData.xUrl} target="_blank" rel="noopener noreferrer">x.com</a>
           </div>
         </div>
       </div>
