@@ -1,6 +1,18 @@
 import {siteData} from "./model/data";
-import {bgTheme, buttonClass} from "./theme";
+import {bgTheme, buttonClass, iconButtonClass} from "./theme";
 import {Confetti} from "./Confetti";
+
+const GitHubIcon = () => (
+  <svg viewBox="0 0 16 16" aria-hidden="true" className="h-5 w-5 fill-current sm:h-6 sm:w-6">
+    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+  </svg>
+)
+
+const XIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-current sm:h-6 sm:w-6">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zM17.083 19.77h1.833L7.084 4.126H5.117z" />
+  </svg>
+)
 
 // invisible hover areas over items in the illustration, in % of the image
 const SCENE_HOTSPOTS = [
@@ -61,10 +73,10 @@ const App = () => {
           </div>
 
           {/* links */}
-          <div className="mt-6 flex flex-wrap justify-center gap-3 sm:gap-5">
-            <a className={`${buttonClass} bg-[#f8e27a]`} href={siteData.githubUrl} target="_blank" rel="noopener noreferrer">github.com</a>
-            <a className={`${buttonClass} bg-[#7ec8ea]`} href={siteData.xUrl} target="_blank" rel="noopener noreferrer">x.com</a>
-            <a className={`${buttonClass} bg-[#f06fb0]`} href="/about/">/about</a>
+          <div className="mt-6 flex items-center justify-center gap-3 sm:gap-4">
+            <a className={iconButtonClass} href={siteData.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><GitHubIcon /></a>
+            <a className={iconButtonClass} href={siteData.xUrl} target="_blank" rel="noopener noreferrer" aria-label="X"><XIcon /></a>
+            <a className={`${buttonClass} bg-[#fdf4dc]`} href="/about/">/about</a>
           </div>
         </div>
       </div>
