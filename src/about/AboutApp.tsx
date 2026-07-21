@@ -1,5 +1,5 @@
 import {careers} from "../model/data";
-import {bgTheme, buttonClass} from "../theme";
+import {bgTheme, buttonClass, sunsetTextClass} from "../theme";
 import {Confetti} from "../Confetti";
 
 const AboutApp = () => {
@@ -22,7 +22,7 @@ const AboutApp = () => {
                   <span className={`inline-block ${i % 2 === 1 ? '-rotate-2' : 'rotate-2'} rounded-lg border-[3px] border-black bg-[#f6a9c9] px-3 py-0.5 font-righteous text-sm tracking-widest text-[#5d3fae] shadow-[3px_3px_0_0_#000]`}>
                     {career.period}
                   </span>
-                  <h2 className={`mt-3 font-righteous text-2xl uppercase tracking-[0.15em] ${bgTheme.name} [text-shadow:2px_2px_0_#000] sm:text-3xl`}>
+                  <h2 className={`mt-3 font-righteous text-2xl uppercase tracking-[0.15em] [-webkit-text-stroke:1px_black] sm:text-3xl ${sunsetTextClass}`}>
                     {career.company}
                   </h2>
                   <p className="mt-1 text-sm font-bold italic tracking-[0.2em] text-black">

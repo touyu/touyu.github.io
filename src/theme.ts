@@ -29,6 +29,13 @@ document.body.style.backgroundColor = bgTheme.base
 document.body.style.backgroundImage = `radial-gradient(${bgTheme.dot} 1.5px, transparent 1.5px)`
 document.body.style.backgroundSize = '14px 14px'
 
+// sunset-gradient display text (same palette as the illustration sky):
+// used for the name on the top page and company names on /about.
+// text-stroke is set per usage so smaller text can take a thinner outline
+export const sunsetTextClass =
+  "bg-gradient-to-b from-[#f8e27a] via-[#f6a9c9] to-[#8c6fd9] bg-clip-text text-transparent " +
+  "[filter:drop-shadow(2px_2px_0_#000)]"
+
 // quiet sibling of buttonClass: same language (black border + hard shadow),
 // smaller and uncolored so it stays subordinate to the main button
 export const iconButtonClass =

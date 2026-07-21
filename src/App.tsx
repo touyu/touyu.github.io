@@ -1,5 +1,5 @@
 import {siteData} from "./model/data";
-import {bgTheme, buttonClass, iconButtonClass} from "./theme";
+import {bgTheme, buttonClass, iconButtonClass, sunsetTextClass} from "./theme";
 import {Confetti} from "./Confetti";
 
 const GitHubIcon = () => (
@@ -82,7 +82,7 @@ const App = () => {
 
           {/* name / description */}
           <div className="mt-6 text-center">
-            <h2 className="bg-gradient-to-b from-[#f8e27a] via-[#f6a9c9] to-[#8c6fd9] bg-clip-text font-righteous text-3xl uppercase tracking-[0.2em] text-transparent [-webkit-text-stroke:1.5px_black] [filter:drop-shadow(2px_2px_0_#000)] md:text-4xl">
+            <h2 className={`font-righteous text-3xl uppercase tracking-[0.2em] [-webkit-text-stroke:1.25px_black] md:text-4xl ${sunsetTextClass}`}>
               {siteData.subTitle}
             </h2>
             <p className="mt-1 text-sm font-bold italic tracking-[0.3em] text-black md:text-base">
