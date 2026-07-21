@@ -30,9 +30,9 @@ const SCENE_HOTSPOTS = [
   {left: '23%', top: '68%', width: '22%', height: '30%', text: 'Fish'},
 ]
 
-const Scene = () => (
-  <div className="relative">
-    <img src="/80s-scene.jpg" alt="" className="block h-auto w-full" />
+const Scene = ({cover = false}: {cover?: boolean}) => (
+  <div className={`relative ${cover ? 'h-full' : ''}`}>
+    <img src="/80s-scene.jpg" alt="" className={cover ? 'block h-full w-full object-cover' : 'block h-auto w-full'} />
     {SCENE_HOTSPOTS.map((spot) => (
       <div
         key={spot.text}
@@ -50,23 +50,28 @@ const Scene = () => (
   </div>
 )
 
+// ?ogp reframes the page for the 1200x630 OGP capture: no background or
+// confetti, the links row is dropped, and the card fills the whole viewport
+// with the illustration center-cropped (object-cover) to absorb the wider ratio
+const isOgpCapture = new URLSearchParams(window.location.search).has('ogp')
+
 const App = () => {
   return (
-    <main className="relative flex min-h-dvh items-center justify-center p-6 sm:p-8">
-      <Confetti />
+    <main className={`relative flex min-h-dvh items-center justify-center ${isOgpCapture ? '' : 'p-6 sm:p-8'}`}>
+      {!isOgpCapture && <Confetti />}
 
-      <div className="relative w-full max-w-3xl">
-        <div className="relative border-4 border-black bg-[#fdf4dc] p-5 pb-8 shadow-[12px_12px_0_0_rgba(0,0,0,0.85)] sm:p-8 sm:pb-10">
+      <div className={isOgpCapture ? 'relative h-dvh w-screen' : 'relative w-full max-w-3xl'}>
+        <div className={`relative border-4 border-black bg-[#fdf4dc] p-5 pb-8 sm:p-8 sm:pb-10 ${isOgpCapture ? 'flex h-full flex-col' : 'shadow-[12px_12px_0_0_rgba(0,0,0,0.85)]'}`}>
           {/* title */}
           <h1 className={`relative z-10 -mb-4 -rotate-3 text-center font-pacifico text-6xl text-white [-webkit-text-stroke:2px_black] ${bgTheme.titleShadow} sm:text-7xl md:-mb-5 md:text-8xl`}>
             {siteData.title}
           </h1>
 
           {/* illustration panel */}
-          <div className="relative mt-2">
-            <div className="bg-black p-1" style={{clipPath: FRAME_CLIP_OUTER}}>
-              <div style={{clipPath: FRAME_CLIP_INNER}}>
-                <Scene />
+          <div className={`relative mt-2 ${isOgpCapture ? 'min-h-0 flex-1' : ''}`}>
+            <div className={`bg-black p-1 ${isOgpCapture ? 'h-full' : ''}`} style={{clipPath: FRAME_CLIP_OUTER}}>
+              <div className={isOgpCapture ? 'h-full' : ''} style={{clipPath: FRAME_CLIP_INNER}}>
+                <Scene cover={isOgpCapture} />
               </div>
             </div>
             {/* year badge */}
@@ -86,11 +91,13 @@ const App = () => {
           </div>
 
           {/* links */}
+          {!isOgpCapture && (
           <div className="mt-6 flex items-center justify-center gap-3 sm:gap-4">
             <a className={iconButtonClass} href={siteData.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><GitHubIcon /></a>
             <a className={iconButtonClass} href={siteData.xUrl} target="_blank" rel="noopener noreferrer" aria-label="X"><XIcon /></a>
             <a className={`${buttonClass} bg-[#fdf4dc]`} href="/about/">/about</a>
           </div>
+          )}
         </div>
       </div>
     </main>

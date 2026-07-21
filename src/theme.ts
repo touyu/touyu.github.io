@@ -15,7 +15,12 @@ const BG_THEMES = [
   },
 ]
 
-export const bgTheme = BG_THEMES[Math.floor(Math.random() * BG_THEMES.length)]
+// ?theme=pink|blue pins the otherwise random theme (used for OGP capture)
+const forcedTheme = new URLSearchParams(window.location.search).get('theme')
+export const bgTheme =
+  forcedTheme === 'pink' ? BG_THEMES[0] :
+  forcedTheme === 'blue' ? BG_THEMES[1] :
+  BG_THEMES[Math.floor(Math.random() * BG_THEMES.length)]
 
 // paint the background on <html>/<body> so it also fills the safe areas
 // (notch / home indicator) on iOS Safari with viewport-fit=cover
