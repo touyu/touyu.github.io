@@ -14,6 +14,15 @@ const XIcon = () => (
   </svg>
 )
 
+// chamfered frame: top-right / bottom-left corners sliced off.
+// the black backing layer (4px padding) and the image get the same shape,
+// but the inner chamfer is ~2.3px shallower — with equal chamfers the
+// diagonal edge of the "border" would render 4px·√2 ≈ 5.7px thick
+const frameClip = (chamfer: number) =>
+  `polygon(0 0, calc(100% - ${chamfer}px) 0, 100% ${chamfer}px, 100% 100%, ${chamfer}px 100%, 0 calc(100% - ${chamfer}px))`
+const FRAME_CLIP_OUTER = frameClip(28)
+const FRAME_CLIP_INNER = frameClip(28 - 8 + 4 * Math.SQRT2)
+
 // invisible hover areas over items in the illustration, in % of the image
 const SCENE_HOTSPOTS = [
   {left: '1%', top: '52%', width: '14%', height: '40%', text: 'Loves GlenAllachie'},
@@ -54,8 +63,12 @@ const App = () => {
           </h1>
 
           {/* illustration panel */}
-          <div className="relative mt-2 border-4 border-black">
-            <Scene />
+          <div className="relative mt-2">
+            <div className="bg-black p-1" style={{clipPath: FRAME_CLIP_OUTER}}>
+              <div style={{clipPath: FRAME_CLIP_INNER}}>
+                <Scene />
+              </div>
+            </div>
             {/* year badge */}
             <div className="absolute z-20 -left-10 -top-4 sm:-left-4 -rotate-6 rounded-lg border-[3px] border-black bg-[#f6a9c9] px-2.5 py-0.5 sm:px-3 sm:py-1 shadow-[3px_3px_0_0_#000]">
               <span className="font-righteous text-base sm:text-xl tracking-widest text-[#5d3fae]">1997</span>
