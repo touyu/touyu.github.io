@@ -82,7 +82,7 @@ const App = () => {
 
           {/* name / description */}
           <div className="mt-6 text-center">
-            <h2 className={`font-righteous text-3xl uppercase tracking-[0.2em] ${bgTheme.name} [text-shadow:2px_2px_0_#000] md:text-4xl`}>
+            <h2 className="font-righteous text-3xl uppercase tracking-[0.2em] text-[#fdf4dc] [-webkit-text-stroke:1.5px_black] [text-shadow:2px_2px_0_#000] md:text-4xl">
               {siteData.subTitle}
             </h2>
             <p className="mt-1 text-sm font-bold italic tracking-[0.3em] text-black md:text-base">
