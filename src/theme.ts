@@ -4,13 +4,13 @@ const BG_THEMES = [
   {
     base: '#f6a9c9',
     dot: '#e0679e',
-    titleShadow: 'drop-shadow-[5px_5px_0_#7ec8ea]',
+    titleShadow: 'drop-shadow-[3px_3px_0_#7ec8ea] sm:drop-shadow-[5px_5px_0_#7ec8ea]',
     name: 'text-[#4d9fd4]',
   },
   {
     base: '#8fd0f0',
     dot: '#4d9fd4',
-    titleShadow: 'drop-shadow-[5px_5px_0_#f6a9c9]',
+    titleShadow: 'drop-shadow-[3px_3px_0_#f6a9c9] sm:drop-shadow-[5px_5px_0_#f6a9c9]',
     name: 'text-[#e75a9c]',
   },
 ]
@@ -38,12 +38,15 @@ export const sunsetTextClass =
 
 // quiet sibling of buttonClass: same language (black border + hard shadow),
 // smaller and uncolored so it stays subordinate to the main button
+// shared shadow scale for both button kinds (thinner on mobile) so the
+// /about button and the icon chips sit in one row with identical depth
+const buttonShadow =
+  "shadow-[2px_2px_0_0_#000] sm:shadow-[3px_3px_0_0_#000] transition-transform duration-150 " +
+  "hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] sm:hover:shadow-[5px_5px_0_0_#000] " +
+  "active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000]"
+
 export const iconButtonClass =
-  "flex h-10 w-10 items-center justify-center border-[3px] border-black bg-[#fdf4dc] text-black sm:h-11 sm:w-11 " +
-  "shadow-[3px_3px_0_0_#000] transition-transform duration-150 " +
-  "hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000]"
+  `flex h-10 w-10 items-center justify-center border-[3px] border-black bg-[#fdf4dc] text-black sm:h-11 sm:w-11 ${buttonShadow}`
 
 export const buttonClass =
-  "inline-flex h-10 items-center justify-center border-[3px] border-black px-3 font-righteous text-sm text-black sm:h-11 sm:px-6 sm:text-lg md:px-7 md:text-xl " +
-  "shadow-[5px_5px_0_0_#000] transition-transform duration-150 " +
-  "hover:-translate-y-0.5 hover:shadow-[7px_7px_0_0_#000] active:translate-y-1 active:shadow-[2px_2px_0_0_#000]"
+  `inline-flex h-10 items-center justify-center border-[3px] border-black px-3 font-righteous text-sm text-black sm:h-11 sm:px-6 sm:text-lg md:px-7 md:text-xl ${buttonShadow}`

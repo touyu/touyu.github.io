@@ -17,11 +17,12 @@ const XIcon = () => (
 // chamfered frame: top-right / bottom-left corners sliced off.
 // the black backing layer (4px padding) and the image get the same shape,
 // but the inner chamfer is ~2.3px shallower — with equal chamfers the
-// diagonal edge of the "border" would render 4px·√2 ≈ 5.7px thick
-const frameClip = (chamfer: number) =>
-  `polygon(0 0, calc(100% - ${chamfer}px) 0, 100% ${chamfer}px, 100% 100%, ${chamfer}px 100%, 0 calc(100% - ${chamfer}px))`
-const FRAME_CLIP_OUTER = frameClip(28)
-const FRAME_CLIP_INNER = frameClip(28 - 8 + 4 * Math.SQRT2)
+// diagonal edge of the "border" would render 4px·√2 ≈ 5.7px thick.
+// the chamfer size lives in a CSS var so it can shrink on mobile
+const frameClip = (chamferVar: string) =>
+  `polygon(0 0, calc(100% - var(${chamferVar})) 0, 100% var(${chamferVar}), 100% 100%, var(${chamferVar}) 100%, 0 calc(100% - var(${chamferVar})))`
+const FRAME_CLIP_OUTER = frameClip('--chamfer')
+const FRAME_CLIP_INNER = frameClip('--chamfer-inner')
 
 // invisible hover areas over items in the illustration, in % of the image
 const SCENE_HOTSPOTS = [
@@ -61,21 +62,21 @@ const App = () => {
       {!isOgpCapture && <Confetti />}
 
       <div className={isOgpCapture ? 'relative h-dvh w-screen' : 'relative w-full max-w-3xl'}>
-        <div className={`relative border-4 border-black bg-[#fdf4dc] p-5 pb-8 sm:p-8 sm:pb-10 ${isOgpCapture ? 'flex h-full flex-col' : 'shadow-[12px_12px_0_0_rgba(0,0,0,0.85)]'}`}>
+        <div className={`relative border-4 border-black bg-[#fdf4dc] p-5 pb-8 sm:p-8 sm:pb-10 ${isOgpCapture ? 'flex h-full flex-col' : 'shadow-[8px_8px_0_0_rgba(0,0,0,0.85)] sm:shadow-[12px_12px_0_0_rgba(0,0,0,0.85)]'}`}>
           {/* title */}
           <h1 className={`relative z-10 -mb-4 -rotate-3 text-center font-pacifico text-6xl text-white [-webkit-text-stroke:2px_black] ${bgTheme.titleShadow} sm:text-7xl md:-mb-5 md:text-8xl`}>
             {siteData.title}
           </h1>
 
           {/* illustration panel */}
-          <div className={`relative mt-2 ${isOgpCapture ? 'min-h-0 flex-1' : ''}`}>
+          <div className={`relative mt-2 [--chamfer:16px] [--chamfer-inner:calc(var(--chamfer)_-_2.34px)] sm:[--chamfer:28px] ${isOgpCapture ? 'min-h-0 flex-1' : ''}`}>
             <div className={`bg-black p-1 ${isOgpCapture ? 'h-full' : ''}`} style={{clipPath: FRAME_CLIP_OUTER}}>
               <div className={isOgpCapture ? 'h-full' : ''} style={{clipPath: FRAME_CLIP_INNER}}>
                 <Scene cover={isOgpCapture} />
               </div>
             </div>
             {/* year badge */}
-            <div className="absolute z-20 -left-10 -top-4 sm:-left-4 -rotate-6 rounded-lg border-[3px] border-black bg-[#f6a9c9] px-2.5 py-0.5 sm:px-3 sm:py-1 shadow-[3px_3px_0_0_#000]">
+            <div className="absolute z-20 -left-10 -top-4 sm:-left-4 -rotate-6 rounded-lg border-[3px] border-black bg-[#f6a9c9] px-2.5 py-0.5 sm:px-3 sm:py-1 shadow-[2px_2px_0_0_#000] sm:shadow-[3px_3px_0_0_#000]">
               <span className="font-righteous text-base sm:text-xl tracking-widest text-[#5d3fae]">1997</span>
             </div>
           </div>
