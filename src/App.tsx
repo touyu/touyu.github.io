@@ -86,7 +86,7 @@ const App = () => {
               {siteData.subTitle}
             </h2>
             <p className="mt-1 text-sm font-bold italic tracking-[0.3em] text-black md:text-base">
-              — {siteData.description} —
+              {siteData.description}
             </p>
           </div>
 

@@ -1,7 +1,7 @@
 export const siteData = {
     title: "touyu.me",
     subTitle: "Yuto Akiba",
-    description: "Software Engineer",
+    description: "makes software",
     githubUrl: "https://github.com/touyu",
     xUrl: "https://x.com/akkey0222"
 }
