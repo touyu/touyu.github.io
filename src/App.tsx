@@ -4,9 +4,9 @@ import {Confetti} from "./Confetti";
 
 // invisible hover areas over items in the illustration, in % of the image
 const SCENE_HOTSPOTS = [
-  {left: '1%', top: '52%', width: '14%', height: '40%', text: 'グレンアラヒーが好き'},
-  {left: '16%', top: '42%', width: '11%', height: '47%', text: 'Varia VS3 & Flair 58+2 愛用'},
-  {left: '23%', top: '68%', width: '22%', height: '30%', text: 'ポーカー楽しいね'},
+  {left: '1%', top: '52%', width: '14%', height: '40%', text: 'Loves GlenAllachie'},
+  {left: '16%', top: '42%', width: '11%', height: '47%', text: 'Daily drivers: Varia VS3 & Flair 58+2'},
+  {left: '23%', top: '68%', width: '22%', height: '30%', text: 'Fish'},
 ]
 
 const Scene = () => (
